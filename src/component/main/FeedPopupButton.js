@@ -95,8 +95,8 @@ function FeedPopupButton({setIsPostChange, isPostChange}) {
         </div> */}
         
         <div className="FeedPopupButton__option">
-          <RateReviewOutlinedIcon style={{ color: "#fa81c0"}} onClick={openModal} />
-          <h3  onClick={openModal}>글쓰기</h3>
+          <RateReviewOutlinedIcon style={{ color: "#fa81c0",marginLeft:"460px"}} onClick={openModal} />
+        <h3 style={{marginleft:"1px"}} onClick={openModal}>글쓰기</h3>
         </div>
 
      

@@ -27,6 +27,7 @@ import NoteAltOutlinedIcon from '@mui/icons-material/NoteAltOutlined';
 import RateReviewOutlinedIcon from '@mui/icons-material/RateReviewOutlined';
 import Modal from "./FeedModal";
 import {CopyToClipboard} from 'react-copy-to-clipboard';
+import { useUserState } from "../member/UserContext";
 
 
 const initialState = {
@@ -74,7 +75,12 @@ function Post({post, setIsPostChange, isPostChange}) {
   const [del,setDel]=useState(); 
   const [copyadd,setCopyadd] = useState("");
 
-  
+  const { user } = useUserState();
+
+  React.useEffect(() => {
+    console.log("App----------", user);
+  }, [user]);
+
 
   const onChangeUserMent = (e) => {
     setReply(e.target.value);
@@ -105,18 +111,12 @@ function Post({post, setIsPostChange, isPostChange}) {
      // console.log(e);
     });
 
+  
+
+
   },[])
 
-  useEffect(()=>{
-    console.log("contents===========================>",contents);
-  },[contents]);
-
-  useEffect(()=>{
-    console.log("del===========================>",del);
-  },[del]);
-
-
-
+ 
 
   const getReplys = useCallback( () => {
     axios 
@@ -208,9 +208,7 @@ function Post({post, setIsPostChange, isPostChange}) {
   };
 
 
-  useEffect(()=>{console.log("jobpost", jobpost)},[jobpost])
 
-  useEffect(()=>{console.log("copyadd", copyadd)},[copyadd])
  
 
   const handleSelect = (emoji) => {
@@ -274,15 +272,15 @@ function Post({post, setIsPostChange, isPostChange}) {
     setModalOpen(false);
   };
 
-  const user = {
-    profilePic:
-      "https://raw.githubusercontent.com/emilyoun/Facebook-Clone-with-REACT/main/Screen%20Shot%202021-01-02%20at%206.03.01%20PM.png",
-    message: "WOW this works! ",
-    timestamp: "This is a timestamp",
-    username: "emilyoun",
-    image:
-      "https://img.webmd.com/dtmcms/live/webmd/consumer_assets/site_images/article_thumbnails/other/cat_relaxing_on_patio_other/1800x1200_cat_relaxing_on_patio_other.jpg",
-  };
+  // const user = {
+  //   profilePic:
+  //     "https://raw.githubusercontent.com/emilyoun/Facebook-Clone-with-REACT/main/Screen%20Shot%202021-01-02%20at%206.03.01%20PM.png",
+  //   message: "WOW this works! ",
+  //   timestamp: "This is a timestamp",
+  //   username: "emilyoun",
+  //   image:
+  //     "https://img.webmd.com/dtmcms/live/webmd/consumer_assets/site_images/article_thumbnails/other/cat_relaxing_on_patio_other/1800x1200_cat_relaxing_on_patio_other.jpg",
+  // };
 
  
 
@@ -312,11 +310,11 @@ function Post({post, setIsPostChange, isPostChange}) {
         </div>
 
 {/* 게시글 수정 */}
-      <div>
-        <RateReviewOutlinedIcon className="button" onClick={()=>onClickModify(mboard_seq)} style={{color:"#5a92ff",alignItems: "right"}} />
+<div style={{color:"#5a92ff",alignItems: "right", cursor:"pointer", marginLeft:"420px",marginRight:"10px"}}>
+        <RateReviewOutlinedIcon className="button"  onClick={()=>onClickModify(mboard_seq)}  />
       </div>
 {/* 게시글 삭제 */}
-      <div>
+      <div style={{color:"#5a92ff",alignItems: "right", cursor:"pointer",  marginRight:"5px"}}>
         <DeleteSweepOutlinedIcon className="button" style={{alignItems: "right",color:"#5a92ff"}} onClick={()=>onClickDel(mboard_seq)} />
       </div>
     </div>

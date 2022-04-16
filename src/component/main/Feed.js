@@ -8,6 +8,7 @@ import FeedPopupButton from "./FeedPopupButton";
 import HashTagBox from "./HashTagBox";
 import Modal from "./FeedModal";
 import { Avatar } from "@material-ui/core";
+import { useUserState } from "../member/UserContext";
 
 function Feed({ keyword }) {
   const [posts, setPosts] = useState([]);
@@ -18,13 +19,21 @@ function Feed({ keyword }) {
   const [showHashtag, setShowHashtag] = useState(false);
   const [isPostChange, setIsPostChange] = useState(false);
 
+  const { user } = useUserState();
+
+  React.useEffect(() => {
+    console.log("App----------", user);
+  }, [user]);
+
+
+
   // 서버 통신 부분
   const getPosts = useCallback(async (page) => {
     setLoading(true);
     await axios
       .get(`http://localhost:9090/mainboard/list/${page}?keyword=${keyword}`)
       .then((res) => {
-        console.log(res);
+        //console.log(res);
         const newlist = res.data.list;
         if (newlist.length === 0) setEmpty(true);
         setPosts((prevState) => [...prevState, ...newlist]);
@@ -42,6 +51,7 @@ function Feed({ keyword }) {
   //   setLoading(false);
   // }, [page]);
 
+ 
   // posts 가 바뀔때마다 함수 실행
   useEffect(() => {
     getPosts(page);

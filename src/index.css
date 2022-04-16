@@ -1,7 +1,4 @@
-/* @import url('https://fonts.googleapis.com/css2?family=Cute+Font&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Gaegu&display=swap'); */
-@import url('https://fonts.googleapis.com/css2?family=Gaegu:wght@700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Gugi&display=swap');
+
 @import url('https://fonts.googleapis.com/css2?family=Poor+Story&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Sunflower:wght@300&display=swap');
 
@@ -16,6 +13,6 @@ body {
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New','Poor Story'
     monospace;
 }

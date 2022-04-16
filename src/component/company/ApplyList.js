@@ -3,6 +3,7 @@ import React, { useState, useEffect} from "react";
 import {  Link } from "react-router-dom";
 import Axios from "axios";
 import { useInView } from "react-intersection-observer"
+import "bootstrap/dist/css/bootstrap.min.css";
 
 function ApplyList(props){
      const [board, setBoard] = useState([])
@@ -38,9 +39,9 @@ function ApplyList(props){
      
       
       return (
-        <div>
-          <h3 align="center">지원자 목록 목록</h3>
-          <table className="table table-striped" style={{ marginTop: 20 }}>
+        <div style={{ paddingTop:"150px" }}>
+          <h3 align="center">지원자 목록</h3>
+          <table className="table table-striped" >
             <thead>
               <tr>
                 <th>번호</th>
@@ -64,10 +65,8 @@ function ApplyList(props){
                  }                                                               
             </tbody>
           </table>
-
-         
-          
         </div>
+
       );
 }
 

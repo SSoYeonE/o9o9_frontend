@@ -19,6 +19,7 @@ import OneToFifty from "../game/OneToFifty";
 import { Link } from 'react-router-dom'
 import AccountCircleRoundedIcon from '@mui/icons-material/AccountCircleRounded';
 import { ConstructionOutlined } from "@mui/icons-material";
+import SocialDistanceOutlinedIcon from '@mui/icons-material/SocialDistanceOutlined';
 
 function Header() {
   // const [{ user }, dispatch] = useStateValue();
@@ -56,8 +57,9 @@ function Header() {
     <div className="header">
       <div className="header__left" style={{marginTop:"13px"}}>
         {/* <img src="https://user-images.githubusercontent.com/95202440/161888309-c0244b0a-8965-44bc-ac1d-f40a6d31383e.png" alt="" width="100%" height="100px"/> &nbsp;&nbsp; */}
-        <img src="https://user-images.githubusercontent.com/95202440/161996945-8a2c1c62-ae42-4840-a2bc-3f5b750acc78.png" alt="" width="100%" height="100px"/> &nbsp;&nbsp;
-
+         
+         <img src="https://user-images.githubusercontent.com/95202440/161996945-8a2c1c62-ae42-4840-a2bc-3f5b750acc78.png" alt="" width="100%" height="100px"/> &nbsp;&nbsp;
+        
         <div className="header__center">
             <div className="header__input" style={{marginTop:"-3px",marginBottom:"8px"}}>
               <SearchIcon onClick={onClickSearch}/> <input onChange={onChangeKeyword} placeholder="Search" type="text" style={{width:"400px"}}/>
@@ -84,17 +86,21 @@ function Header() {
         </div> */}
      
        
-        <div className="header__right" >
+     <div className="header__right" >
         <IconButton>
         <Link to="/"> <HomeRoundedIcon style={{color:"#25d8de"}} fontSize="large"/></Link>
         </IconButton>
 
         <IconButton>
-        <Link to=""><AccountCircleRoundedIcon style={{color:"#25d8de"}} fontSize="large"/></Link>
+        <Link to="/profile"><AccountCircleRoundedIcon style={{color:"#25d8de"}} fontSize="large"/></Link>
         </IconButton>
 
         <IconButton>
-         <FolderSpecialRoundedIcon style={{color:"#25d8de", marginBottom:"6px"}} fontSize="large" onClick={onClickFolder}/>
+        <Link to=""><SocialDistanceOutlinedIcon style={{color:"#25d8de"}} fontSize="large"/></Link>
+        </IconButton>
+
+        <IconButton>
+         <FolderSpecialRoundedIcon style={{color:"#25d8de"}} fontSize="large" onClick={onClickFolder}/>
         </IconButton>
 
         <IconButton>

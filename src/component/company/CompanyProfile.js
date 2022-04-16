@@ -70,7 +70,11 @@ const onClickModify = () => {
             
           </CardContent>
 
-          <hr style={{ color: "rgba(0,0,0,0.1)" }} />
+         
+        </CardActionArea>
+        
+      </Card>
+      <hr style={{ color: "rgba(0,0,0,0.1)" }} />
           {/* <Button variant="contained"onClick={onClickModify}>수정하기</Button> */}
           <div style={{textAlign:"center"}} onClick={onClickModify}>
           <BuildOutlinedIcon style={{color:"#4fd3d8"}}/>
@@ -90,10 +94,6 @@ const onClickModify = () => {
           </CardContent>
           
          
-        </CardActionArea>
-        
-      </Card>
-      
 
     </div>
   );

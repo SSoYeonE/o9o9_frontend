@@ -28,9 +28,9 @@ function App1() {
   return (
     <>
       <Header />
-      <div className="container">
+      <div>
         <Routes>
-          {!user && (
+          {user && (
             <>
               <Route path="/" element={<MainPage />} />
               <Route path="*" element={<NoMatch />} />

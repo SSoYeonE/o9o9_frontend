@@ -7,9 +7,19 @@ import { Avatar, CardActionArea, rgbToHex } from "@mui/material";
 import "./Profile.css";
 import { hexToRgb } from "@material-ui/core";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
+import { useUserState } from "../member/UserContext";
 
 export default function Profile() {
+  const history = useNavigate();
+  const { user } = useUserState();
 
+  React.useEffect(() => {
+    console.log("App----------", user);
+  }, [user]);
+
+
+  
   const demoProfile = {
     "user_seq": "",
     "user_image1": "",
@@ -26,7 +36,7 @@ export default function Profile() {
    
   const getProfile = async () => {
       // 임시코드
-      const user_seq = '1';
+      const user_seq = user.user_seq;
       await axios 
       .get(`http://127.0.0.1:9090/sideprofile/view/${user_seq}`)
       .then((res) => {
@@ -41,11 +51,14 @@ export default function Profile() {
     console.log(profile);
   }, [profile])
 
+  const profileDetail = ()=>{
+    history("/company");
+  }
 
 
   return (
     <div className="profile">
-      <Card sx={{ minWidth: 220, maxHeight: 500 }}>
+      <Card sx={{ minWidth: 220, maxHeight: 500 }} onClick={profileDetail}>
         <CardActionArea>
           <CardMedia
             component="img"
