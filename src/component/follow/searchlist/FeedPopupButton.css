@@ -1,0 +1,74 @@
+.FeedPopupButton {
+  display: flex;
+  margin-top: 30px;
+  /* so all the childrens get stacked */
+  flex-direction: column;
+  background-color: #ffffff;
+  border-radius: 15px;
+  /* border: solid rgb(0, 0, 0, 0.1) 1px; */
+  box-shadow: 0px 5px 7px -7px rgba(0, 0, 0, 0.75);
+  width: 600px;
+}
+
+.FeedPopupButton__top {
+  display: flex;
+  border-bottom: 1px solid #c7f2fa;
+  padding-bottom: 15px;
+  padding: 15px;
+}
+
+.FeedPopupButton__top > div {
+  flex: 1;
+  display: flex;
+}
+
+.FeedPopupButton__top > div > input {
+  outline-width: 0;
+  border: none;
+  padding: 5px 20px;
+  margin: 0 10px;
+  border-radius: 999px;
+  background-color: #d7f8ff;
+}
+
+.FeedPopupButton__top > div > button {
+  display: none;
+}
+
+/*  
+@media (max-width: 1200px) {
+    .FeedPopupButton__top > form > button {
+        display: visible;
+    }
+}   */
+
+.FeedPopupButton__input {
+  flex: 1;
+}
+
+.FeedPopupButton__bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.FeedPopupButton__option {
+  padding-left: 10px;
+  padding-right: 10px;
+  display: flex;
+  align-items: center;
+  color: rgb(128, 128, 128);
+  margin: 5px;
+}
+
+.FeedPopupButton__option > h3 {
+  font-size: medium;
+  margin-left: 10px;
+  cursor: pointer;
+}
+
+.FeedPopupButton__option:hover {
+  background-color: #d7f8fd;
+  border-radius: 20px;
+}
+

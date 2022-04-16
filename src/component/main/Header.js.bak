@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import "./Header.css";
 import SearchIcon from "@material-ui/icons/Search";
 import HomeRoundedIcon from '@mui/icons-material/HomeRounded';
@@ -18,7 +18,6 @@ import { useNavigate } from "react-router-dom";
 import OneToFifty from "../game/OneToFifty";
 import { Link } from 'react-router-dom'
 import AccountCircleRoundedIcon from '@mui/icons-material/AccountCircleRounded';
-import { ConstructionOutlined } from "@mui/icons-material";
 
 function Header() {
   // const [{ user }, dispatch] = useStateValue();
@@ -33,7 +32,7 @@ function Header() {
       "https://img.webmd.com/dtmcms/live/webmd/consumer_assets/site_images/article_thumbnails/other/cat_relaxing_on_patio_other/1800x1200_cat_relaxing_on_patio_other.jpg",
   };
 
- const [keyword, setKeyword] = useState("");
+ 
 
   const onClickFolder = () =>{
     navigate('/likefolder');
@@ -42,16 +41,6 @@ function Header() {
   const onclickGame =()=>{
     navigate('../game/OneToFifty')
   }
-
-  const onClickSearch = ()=>{
-    navigate('/searchlist/'+keyword);
-  }
-
-  const onChangeKeyword = (e) => {
-    console.log(e.target.value);
-    setKeyword(e.target.value);
-  }
-
   return (
     <div className="header">
       <div className="header__left" style={{marginTop:"13px"}}>
@@ -60,7 +49,7 @@ function Header() {
 
         <div className="header__center">
             <div className="header__input" style={{marginTop:"-3px",marginBottom:"8px"}}>
-              <SearchIcon onClick={onClickSearch}/> <input onChange={onChangeKeyword} placeholder="Search" type="text" style={{width:"400px"}}/>
+              <SearchIcon/> <input placeholder="Search" type="text" style={{width:"400px"}}/>
           </div>
         </div>
       </div> 
