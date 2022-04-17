@@ -17,8 +17,13 @@ function FollowingList() {
     // ? BEM naming convention
     <div className="app">
       <>
+          
           <div className="app__body">
+          
           <Profile />
+          <div style={{textAlign:"center" , marginTop:"50px", marginBottom:"10px"}}><h3>FollowingList</h3>
+          <br/>
+          
           <List keyword={""} user={followee}/>
          {/* {params.keyword === undefined ? (
             <List keyword={""} />
@@ -26,6 +31,7 @@ function FollowingList() {
             <List keyword={params.keyword} />
           )}
           */}
+          </div>
         </div>
       </>
     </div>

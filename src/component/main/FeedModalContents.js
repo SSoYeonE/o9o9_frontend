@@ -174,7 +174,7 @@ const FeedModalContents = ({props, setSectionHeight}) => {
     frmData.append("work_field", work_field);
     frmData.append("work_condition", work_condition);
 
-    alert(mboard_seq);
+
     if(mboard_seq === ""){
 
       Axios.post('http://localhost:9090/mainboard/insert/', frmData)
@@ -271,9 +271,6 @@ const onChangeHashtag = (e) => {
   setHashtag(e.target.value);
 };
 
-// useEffect(() => {
-//   console.log(hashArr);
-// }, [hashArr]);
 
 const onKeyUp = useCallback(
   (e) => {

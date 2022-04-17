@@ -1,11 +1,13 @@
-
+@import url('https://fonts.googleapis.com/css2?family=Poor+Story&display=swap');
 
 .app {
   background-color: #f1f2f5;
+  font-family:'Poor Story'
 }
 .app__body {
   flex: 1;
   display: flex;
   flex-direction: row;
   justify-content: center;
+  font-family:'Poor Story'
 }

@@ -17,7 +17,7 @@ function SearchProfile({profile}) {
   },[])
 
   const onClick = ()=>{
-    alert(profile.user_level, profile.user_seq);
+    //alert(profile.user_level, profile.user_seq);
     if(profile.user_level==="0"){
       // 일반 사용자 프로필
       // 우영님꺼

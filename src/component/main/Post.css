@@ -21,6 +21,7 @@
   margin-right: 10px;
   font-family:'Poor Story'
 }
+
 .post__topInfo > h3 {
   font-size: medium;
   font-family:'Poor Story'
@@ -53,7 +54,7 @@ p {
 .post__image > img {
   width: 100%;
   margin-left: 150px;
-  font-family:'Poor Story'
+  
   
 }
 
@@ -87,7 +88,7 @@ p {
 .post__option:hover {
   background-color: #c7f2fa;
   border-radius: 10px;
-  font-family:'Poor Story'
+
 }
 
 .reply {
@@ -102,22 +103,22 @@ p {
 a:link {
   color: blue;
   text-decoration: none;
-  font-family:'Poor Story'
+
 }
 a:visited {
   color: blue;
   text-decoration: none;
-  font-family:'Poor Story'
+
 }
 a:hover {
   color: blue;
   text-decoration: underline;
-  font-family:'Poor Story'
+
 }
 .button {
   float: "right";
   color:"#fbb876";
-  font-family:'Poor Story'
+ 
 }
 
 .tooltip{

@@ -79,7 +79,7 @@ function Post({post, setIsPostChange, isPostChange}) {
   const { user } = useUserState();
 
   React.useEffect(() => {
-    console.log("App----------", user, user_id);
+    //console.log("App----------", user, user_id);
   }, [user]);
 
 
@@ -310,6 +310,7 @@ function Post({post, setIsPostChange, isPostChange}) {
   //     "https://img.webmd.com/dtmcms/live/webmd/consumer_assets/site_images/article_thumbnails/other/cat_relaxing_on_patio_other/1800x1200_cat_relaxing_on_patio_other.jpg",
   // };
 
+ console.log("user.user_id===================>>>>>",user.user_id, user_id)
  
 
   return (
@@ -338,18 +339,18 @@ function Post({post, setIsPostChange, isPostChange}) {
         </div>
 
 {
-  user.user_id === user_id ? 
-    <>
+  user.user_seq === user_seq ? 
+    <> 
       <div style={{color:"#5a92ff",alignItems: "right", cursor:"pointer", marginLeft:"420px",marginRight:"10px"}}>
-          <RateReviewOutlinedIcon className="button"  onClick={()=>onClickModify(mboard_seq)}  />
+        <RateReviewOutlinedIcon className="button"  onClick={()=>onClickModify(mboard_seq)}  />
       </div>
       <div style={{color:"#5a92ff",alignItems: "right", cursor:"pointer",  marginRight:"5px"}}>
-      <DeleteSweepOutlinedIcon className="button" style={{alignItems: "right",color:"#5a92ff"}} onClick={()=>onClickDel(mboard_seq)} />
-    </div>
+        <DeleteSweepOutlinedIcon className="button" style={{color:"#5a92ff"}} onClick={()=>onClickDel(mboard_seq)} />
+      </div>
     </>
   :
-  <></>  
-}
+    <></>  
+  }
     </div>
       
       {contents_url && <div className="post__image" >

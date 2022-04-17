@@ -36,7 +36,7 @@ function LoginPage() {
       const { result, user, msg } = data;
       alert(msg);
       if (result === "success") {
-        console.log("[LoginPage] 로그인 성공, 세션에 아이디 저장");
+       // console.log("[LoginPage] 로그인 성공, 세션에 아이디 저장");
         window.sessionStorage.setItem("user_id", userInfo.user_id);
         window.sessionStorage.setItem("user_seq", user.user_seq);
         window.sessionStorage.setItem("user_level", user.user_level);
