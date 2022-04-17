@@ -53,7 +53,7 @@ export default function Profile() {
   }, [profile])
 
   const profileDetail = ()=>{
-    history("/company")
+    history("/company/"+user.user_seq);
   }
 
 
@@ -65,7 +65,7 @@ export default function Profile() {
             component="img"
             height="200"
             image={profile.user_image2}
-            alt="green iguana"
+            alt="user_image"
           />
 
           <CardContent

@@ -8,10 +8,7 @@ import List from"./List";
 // {/* lowcase a to place h1 in centre, Capital A to align left */}
 
 function FollowingList() {
-  const params = useParams();
-  useEffect(() => {
- 
-  }, [params.keyword]);
+  const {followee} = useParams();
 
 
   // const [{ user }, dispatch] = useStateValue();
@@ -22,7 +19,7 @@ function FollowingList() {
       <>
           <div className="app__body">
           <Profile />
-          <List keyword={""} />
+          <List keyword={""} user={followee}/>
          {/* {params.keyword === undefined ? (
             <List keyword={""} />
           ) : (

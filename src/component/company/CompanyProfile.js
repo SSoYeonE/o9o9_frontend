@@ -7,7 +7,7 @@ import { Avatar, CardActionArea, rgbToHex } from "@mui/material";
 import "./Profile.css";
 import { hexToRgb, Button } from "@material-ui/core";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import Popup from "./Popup.js";
 import BuildOutlinedIcon from '@mui/icons-material/BuildOutlined';
 import {  Link } from "react-router-dom";
@@ -22,7 +22,9 @@ import { useUserState } from "../member/UserContext";
 
 function CompanyProfile() {
   const [board, setBoard] = useState([])
+  const [isFollow, setIsFollow] = useState(false);
   const navigate = useNavigate();
+  const {user_seq} = useParams();
 
   const { user } = useUserState();
 
@@ -33,7 +35,7 @@ function CompanyProfile() {
    
 
   useEffect(() => { 
-    console.log("데이터 불러오기");
+    console.log("데이터 불러오기", user_seq);
     // setBoard(
     //    ...board,
     //    [
@@ -43,15 +45,32 @@ function CompanyProfile() {
     //      {id:4, title:"제목4", writer:"홍길동4", contents:"내용을 막 넣자4"},
     //      {id:5, title:"제목5", writer:"홍길동5", contents:"내용을 막 넣자5"}
     //   ]
-    // );
+    // ); /follow/isfollow
 
-    axios.post('http://localhost:9090/company/view/1')
+    axios.post('http://localhost:9090/company/view/'+user_seq)
     .then(res => {
       console.log(res.data)
       setBoard(res.data);
+
+    
+    });
+  
+    const frmData = new FormData();
+    frmData.append("follower_seq", user.user_seq);
+    frmData.append("followee_seq", user_seq);
+
+    console.log( 'isfollowing -> ', user.user_seq,  user_seq)
+
+
+    axios.post('http://localhost:9090/follow/isfollow', frmData)
+    .then(res => {
+      console.log(res.data.result);
+      if (res.data.result === true) {
+        setIsFollow(true);
+      }
     });
 
-    //console.log( heroState.hero );
+
   }, []);
 
   useEffect(()=>{
@@ -69,8 +88,33 @@ const onClickCandList = () => {
   navigate('/company/apply')
 }
 const onClickFollow = () => {
-  navigate('/company/apply')
-  // 원웅님 수정
+  const frmData = new FormData();
+  frmData.append("follower_seq", user.user_seq);
+  frmData.append("followee_seq", user_seq);
+
+  console.log( 'isfollowing -> ', user.user_seq,  user_seq)
+
+  // 팔로우 or 언팔로우
+  if(isFollow) {
+    axios.post('http://localhost:9090/follow/unfollow', frmData)
+    .then(res => {
+      console.log(res.data.result);
+      if (res.data.result === true) {
+        setIsFollow(false);
+      }
+    });
+
+  } else {
+    axios.post('http://localhost:9090/follow/follow', frmData)
+    .then(res => {
+      console.log(res.data.result);
+      if (res.data.result === true) {
+        setIsFollow(true);
+      }
+    });
+
+  }
+
 }
   return (
     <div className="com_profile">
@@ -81,7 +125,7 @@ const onClickFollow = () => {
             component="img"
             height="200"
             image={board.image2}
-            alt="green iguana"
+            alt="user_image"
           />
 
           <CardContent
@@ -120,7 +164,8 @@ const onClickFollow = () => {
              {/* FavoriteBorderIcon 팔로우가 아닐시에는 이아이콘 */}
             <div style={{textAlign:"center"}} onClick={onClickFollow}>
             <FavoriteIcon style={{color:"#4fd3d8"}}/>
-              팔로우
+              
+              { isFollow === true ? "언팔로우" : "팔로우"}
             
           </div>
             </div>}

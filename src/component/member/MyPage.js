@@ -368,6 +368,7 @@ function MyPage() {
                   onChange={onChangeAddr2}
                 />
               </Grid>
+              
               <Grid item xs={12}>
               <FormControlLabel control={
               <Checkbox

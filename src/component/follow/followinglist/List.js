@@ -7,9 +7,10 @@ function List(props) {
     const [page, setPage] = useState(1);
     const [List, setList]=useState([]);
 
-    useEffect(()=>{
+    const {user} = props;
 
-        axios.get('http://localhost:9090/follow/followinglist?followee=test3')
+    useEffect(()=>{
+        axios.get('http://localhost:9090/follow/followerlist?follower='+user)
         .then( (res)=>{
             console.log(res.data);
             setList(res.data.list)
