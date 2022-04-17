@@ -13,7 +13,8 @@ import useInput from "./useInput";
 import { useNavigate, useParams } from "react-router-dom";
 import { useUserDispatch, useUserState } from "./UserContext";
 import { sendMypageReq, sendUpdateReq } from "./UserApi";
-
+import Checkbox from '@mui/material/Checkbox';
+import FormControlLabel from '@mui/material/FormControlLabel';
 const theme2 = createTheme();
 
 function MyPage() {
@@ -36,6 +37,11 @@ function MyPage() {
   const [user_birth, onChangeBirth, setBrith] = useInput("");
   const [user_image1, onChangeImage1, setImage1] = useInput("");
   const [user_image2, onChangeImage2, setImage2] = useInput("");
+  const [checked, setChecked] = React.useState(false);
+
+  const handleChange = (event) => {
+    setChecked(event.target.checked);
+  };
 
   useEffect(() => {
     const MypageReq = async (user_id) => {
@@ -54,6 +60,7 @@ function MyPage() {
         setImage2(info.user_image2);
         setBrith(info.user_birth);
         setBusiness(info.user_business);
+        setChecked(info.user_level);
       } else {
         alert("서버 응답 에러");
       }
@@ -69,6 +76,7 @@ function MyPage() {
   const onModify = async (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
+    data.append("user_level", checked ? "1":"0");
     const res = await sendUpdateReq(data);
 
     console.log("[MyPage-onModify]", res);
@@ -119,6 +127,7 @@ function MyPage() {
     navigate(`/login`);
     //window.location.reload(true);
   };
+
 
   return (
     <ThemeProvider theme={theme2}>
@@ -358,8 +367,16 @@ function MyPage() {
                   onChange={onChangeAddr2}
                 />
               </Grid>
-
               <Grid item xs={12}>
+              <FormControlLabel control={
+              <Checkbox
+                checked={checked}
+                onChange={handleChange}
+                inputProps={{ 'aria-label': '기업' }}
+              />
+              } label="기업" />
+              </Grid>
+              {checked && <Grid item xs={12}>
                 <TextField
                   required
                   fullWidth
@@ -371,7 +388,10 @@ function MyPage() {
                   onChange={onChangeBusiness}
                 />
               </Grid>
+              }
+              
             </Grid>
+
             <Button
               type="submit"
               fullWidth

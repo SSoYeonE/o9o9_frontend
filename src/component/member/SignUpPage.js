@@ -12,6 +12,7 @@ import { PersonOutline } from "@material-ui/icons";
 import useInput from "./useInput";
 import { useNavigate } from "react-router-dom";
 import { sendInsertReq } from "./UserApi";
+import { Checkbox, FormControlLabel } from "@mui/material";
 
 const theme2 = createTheme();
 
@@ -28,6 +29,12 @@ function SignUpPage() {
   const [user_address1, onChangeAddr1, setAddr1] = useInput("");
   const [user_address2, onChangeAddr2, setAddr2] = useInput("");
   const [user_birth, onChangeBirth, setBrith] = useInput("");
+  const [user_business, onChangeBusiness, setBusiness] = useInput("");
+  const [checked, setChecked] = React.useState(false);
+
+  const handleChange = (event) => {
+    setChecked(event.target.checked);
+  }; 
 
   const onSignUp = async (event) => {
     event.preventDefault();
@@ -204,6 +211,33 @@ function SignUpPage() {
                 />
               </Grid>
             </Grid>
+
+              
+              <Grid item xs={12}>
+              <FormControlLabel control={
+              <Checkbox
+                checked={checked}
+                onChange={handleChange}
+                inputProps={{ 'aria-label': '기업' }}
+              />
+              } label="기업" />
+              </Grid>
+              {checked && <Grid item xs={12}>
+                <TextField
+                  required
+                  fullWidth
+                  name="user_business"
+                  label="사업자등록번호"
+                  id="user_business"
+                  autoComplete="user_business"
+                  value={user_business}
+                  onChange={onChangeBusiness}
+                />
+              </Grid>
+              }
+              
+
+
             <Button
               type="submit"
               fullWidth
