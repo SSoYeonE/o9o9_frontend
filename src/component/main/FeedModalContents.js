@@ -386,7 +386,7 @@ const onClickImg = () =>{
           style={{ display: "flex", padding:"13px", flex: "1" }}
           multiline
           rows={5}
-          placeholder="나누고 싶은 이야기가 있으세요?"
+          placeholder="나누고 싶은 이야기가 있으신가요?"
           variant="outlined"
           onChange={onChangeContent}
           value={contents}
@@ -423,7 +423,7 @@ const onClickImg = () =>{
               />
               </form>
               <YardOutlinedIcon style={{ color: "#61b3ff" }} />
-              &nbsp;&nbsp;<h3>사진</h3>
+              &nbsp;&nbsp;사진
             </ButtonBase>
           </div>
           
@@ -444,7 +444,7 @@ const onClickImg = () =>{
             <div className="FeedModalContents__option" onClick={onClickEmoji}>
               <ButtonBase variant="contained" component="label">
                 <AddReactionOutlinedIcon style={{ color: "orange" }}  />
-                &nbsp;&nbsp;<h3>이모티콘</h3>
+                &nbsp;&nbsp;이모티콘
               </ButtonBase>
             </div>
             { showSelector ? (
@@ -459,7 +459,7 @@ const onClickImg = () =>{
           <div className="FeedModalContents__option">
             <ButtonBase variant="contained" component="label" onClick={writeBtn}>
               <RateReviewOutlinedIcon style={{ color: "#fa81c0"}} />
-              &nbsp;&nbsp;<h3>올리기</h3>
+              &nbsp;&nbsp;올리기
             </ButtonBase>
           </div>
         </div>

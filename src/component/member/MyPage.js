@@ -204,6 +204,7 @@ function MyPage() {
                 justifyContent: "center",
                 flexDirection: "column",
                 marginBottom: "20px",
+                fontFamily:'Poor Story'
               }}
             >
               <div

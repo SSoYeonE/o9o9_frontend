@@ -1,8 +1,11 @@
+@import url('https://fonts.googleapis.com/css2?family=Poor+Story&display=swap');
+
 .sidebarRow {
     display: flex;
     align-items: center;
     padding: 10px;
     cursor: pointer;
+    font-family:'Poor Story'
 }
 
 .sidebarRow:hover {

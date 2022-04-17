@@ -1,3 +1,6 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Poor+Story&display=swap');
+
 .hashDivrap {
   margin-top: 10px;
   color: rgb(52, 58, 64);
@@ -7,10 +10,12 @@
   letter-spacing: -0.6px;
   border-bottom: solid rgba(0, 0, 0, 0.1) 1px;
   padding: 2px 2px 0px 2px;
+  font-family:'Poor Story'
 }
 .HashWrapOuter {
   display: flex;
   flex-wrap: wrap;
+  font-family:'Poor Story'
 }
 
 .HashWrapInner {
@@ -27,6 +32,7 @@
   line-height: 20px;
   margin-right: 5px;
   cursor: pointer;
+  font-family:'Poor Story'
 }
 
 .HashInput {
@@ -38,4 +44,5 @@
   line-height: 2rem;
   min-width: 4rem;
   border: none;
+  font-family:'Poor Story'
 }

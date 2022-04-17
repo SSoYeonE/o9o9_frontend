@@ -25,7 +25,8 @@ export default function Profile() {
     "user_image1": "",
     "user_image2": "",
     "profile_short": "",
-    "user_name": ""
+    "user_name": "",
+    "user_level":""
 };
 
   const [profile, setProfile] = useState(demoProfile);
@@ -52,7 +53,7 @@ export default function Profile() {
   }, [profile])
 
   const profileDetail = ()=>{
-    history("/company");
+    history("/company")
   }
 
 

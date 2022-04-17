@@ -1,9 +1,12 @@
+@import url('https://fonts.googleapis.com/css2?family=Poor+Story&display=swap');
+
 .post {
   width: 600px;
   margin-top: 15px;
   border-radius: 15px;
   background-color: white;
   box-shadow: 0px 5px 7px -7px rgba(0, 0, 0, 0.75);
+  font-family:'Poor Story'
 }
 
 .post__top {
@@ -11,13 +14,16 @@
   position: relative;
   align-items: center;
   padding: 15px;
+  font-family:'Poor Story'
 }
 
 .post__avatar {
   margin-right: 10px;
+  font-family:'Poor Story'
 }
 .post__topInfo > h3 {
   font-size: medium;
+  font-family:'Poor Story'
  
 }
 
@@ -26,23 +32,28 @@
   color: gray;
   align-items: center;
   margin-top:5px ;
+  font-family:'Poor Story'
 }
 
 .post__bottom {
   margin-bottom: 10px;
   padding: 0px 30px;
+  font-family:'Poor Story'
 }
 .DelSweep
 {
   align-items: right;
+  font-family:'Poor Story'
 }
 p {
   margin: 0px 0px 10px 0px;
+  font-family:'Poor Story'
 }
 
 .post__image > img {
   width: 100%;
   margin-left: 150px;
+  font-family:'Poor Story'
   
 }
 
@@ -55,6 +66,7 @@ p {
   color: gray;
   cursor: pointer;
   padding: 15px;
+  font-family:'Poor Story'
   
 }
 
@@ -64,15 +76,18 @@ p {
   justify-content: center;
   padding: 5px;
   flex: 1;
+  font-family:'Poor Story'
 }
 
 .post__option > p {
   margin-left: 10px;
+  font-family:'Poor Story'
 }
 
 .post__option:hover {
   background-color: #c7f2fa;
   border-radius: 10px;
+  font-family:'Poor Story'
 }
 
 .reply {
@@ -80,30 +95,36 @@ p {
   align-items: center;
   justify-content: center;
   margin-bottom: 10px;
+  font-family:'Poor Story'
 
 }
 
 a:link {
   color: blue;
   text-decoration: none;
+  font-family:'Poor Story'
 }
 a:visited {
   color: blue;
   text-decoration: none;
+  font-family:'Poor Story'
 }
 a:hover {
   color: blue;
   text-decoration: underline;
+  font-family:'Poor Story'
 }
 .button {
   float: "right";
   color:"#fbb876";
+  font-family:'Poor Story'
 }
 
 .tooltip{
 
   display: inline-block;
   color:white;
+  font-family:'Poor Story'
   
 }
 

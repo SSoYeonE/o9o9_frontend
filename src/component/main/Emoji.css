@@ -1,6 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=Poor+Story&display=swap');
+
 .picker-container {
     position: relative;
     width: 300px;
+    
+    font-family:'Poor Story'
   }
   
   .emoji-icon {
@@ -16,4 +20,6 @@
     border-radius: 3px;
     border: 1px solid #999;
     margin-bottom: 10px;
+    
+    font-family:'Poor Story'
   }
