@@ -42,7 +42,6 @@ function App1() {
               <Route path="/emoji" element={<Emoji />} />
               <Route path="/likefolder" element={<LikeFolder />} />
               <Route path="/onetofifty" element={<OneToFifty />} />
-              <Route path="/contents/:board_seq" element={<Contentsview />} />
               <Route path="company" element={<CompanyProfile />} />
               <Route path="company/modify" element={<CompanyProfileModify />} />
               <Route path="company/apply" element={<ApplyList />} />
@@ -59,8 +58,11 @@ function App1() {
               <Route path="login" element={<LoginPage />} />
               <Route path="findid" element={<FindId />} />
               <Route path="findpwd" element={<FindPwd />} />
+              
+
             </>
           )}
+          <Route path="/contentsview/:mboard_seq" element={<Contentsview />} />
         </Routes>
       </div>
     </>

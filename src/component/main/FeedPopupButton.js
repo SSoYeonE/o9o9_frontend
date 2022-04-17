@@ -1,28 +1,24 @@
 import React, { useState } from "react";
 import "./FeedPopupButton.css";
 import { Avatar } from "@material-ui/core";
-import PanoramaOutlinedIcon from '@mui/icons-material/PanoramaOutlined';
-import SmartDisplayOutlinedIcon from '@mui/icons-material/SmartDisplayOutlined';
-import AddReactionOutlinedIcon from '@mui/icons-material/AddReactionOutlined';
-import YardOutlinedIcon from '@mui/icons-material/YardOutlined';
-import { useStateValue } from "./StateProvider";
 import Modal from "./FeedModal";
 import RateReviewOutlinedIcon from '@mui/icons-material/RateReviewOutlined';
+
 
 function FeedPopupButton({setIsPostChange, isPostChange}) {
   // const [{ user }, dispatch] = useStateValue();
   const [input, setInput] = useState("");
   const [imageUrl, setImageUrl] = useState("");
 
-  const user = {
-    profilePic:
-      "https://raw.githubusercontent.com/emilyoun/Facebook-Clone-with-REACT/main/Screen%20Shot%202021-01-02%20at%206.03.01%20PM.png",
-    message: "WOW this works! ",
-    timestamp: "This is a timestamp",
-    username: "emilyoun",
-    image:
-      "https://img.webmd.com/dtmcms/live/webmd/consumer_assets/site_images/article_thumbnails/other/cat_relaxing_on_patio_other/1800x1200_cat_relaxing_on_patio_other.jpg",
-  };
+  // const user = {
+  //   profilePic:
+  //     "https://raw.githubusercontent.com/emilyoun/Facebook-Clone-with-REACT/main/Screen%20Shot%202021-01-02%20at%206.03.01%20PM.png",
+  //   message: "WOW this works! ",
+  //   timestamp: "This is a timestamp",
+  //   username: "emilyoun",
+  //   image:
+  //     "https://img.webmd.com/dtmcms/live/webmd/consumer_assets/site_images/article_thumbnails/other/cat_relaxing_on_patio_other/1800x1200_cat_relaxing_on_patio_other.jpg",
+  // };
 
   //
   const handleSubmit = (e) => {
@@ -57,18 +53,18 @@ function FeedPopupButton({setIsPostChange, isPostChange}) {
     <div className="FeedPopupButton">
       <div className="FeedPopupButton__top">
         <div>
-          <Avatar src={user.photoURL} alt={user.username} />
+          {/* <Avatar src={user.photoURL} alt={user.username} /> */}
           <input
             readOnly
             value={input}
             // onChange={(e) => setInput(e.target.value)}
             onClick={openModal}
             className="FeedPopupButton__input"
-            placeholder={`What's on your mind, ${user.username}?`}
+            placeholder={ `오늘 당신의 기분은 어떠신가요? `}
           />
           <Modal open={modalOpen} close={closeModal} header="생각나누기" isPostChange={isPostChange} setIsPostChange={setIsPostChange}>
           <br/> 
-          <Avatar src={user.image} alt={user.username} style={{marginLeft:20}} />
+          {/* <Avatar src={user.image} alt={user.username} style={{marginLeft:20}} /> */}
           </Modal>
          
 

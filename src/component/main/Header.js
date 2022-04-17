@@ -21,6 +21,7 @@ import AccountCircleRoundedIcon from '@mui/icons-material/AccountCircleRounded';
 import { ConstructionOutlined } from "@mui/icons-material";
 import SocialDistanceOutlinedIcon from '@mui/icons-material/SocialDistanceOutlined';
 import { useUserState } from "../member/UserContext";
+import EmojiPeopleOutlinedIcon from '@mui/icons-material/EmojiPeopleOutlined';
 
 
 function Header() {
@@ -41,6 +42,16 @@ function Header() {
   // };
 
  const [keyword, setKeyword] = useState("");
+//  const dispatch = useUserDispatch();
+
+//  const clickLogoutBtn = () => {
+//   dispatch({
+//     type: "LOGOUT",
+//   });
+//   window.sessionStorage.clear();
+//   navigate(`/login`);
+//   //window.location.reload(true);
+// };
 
   const onClickFolder = () =>{
     navigate('/likefolder');
@@ -105,9 +116,9 @@ function Header() {
         <Link to=""><SocialDistanceOutlinedIcon style={{color:"#25d8de"}} fontSize="large"/></Link>
         </IconButton>
 
-        <IconButton>
-         <FolderSpecialRoundedIcon style={{color:"#25d8de"}} fontSize="large" onClick={onClickFolder}/>
-        </IconButton>
+        {/* <IconButton>
+         <EmojiPeopleOutlinedIcon style={{color:"#25d8de"}} fontSize="large" onClick={clickLogoutBtn}/>
+        </IconButton> */}
 
         <IconButton>
           <Link to="OneToFifty"><SmartToyOutlinedIcon style={{color:"#25d8de"}} fontSize="large"/></Link>

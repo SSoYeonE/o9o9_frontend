@@ -61,6 +61,12 @@ function LoginPage() {
   };
 
   return (
+    //  <div>
+    // //   <div>
+    // //     <img src="https://user-images.githubusercontent.com/95202440/163705922-b1ee824a-f175-4134-a239-d0c76b3a7ef6.png" style:></img>
+    // //   </div>
+
+    <div>
     <ThemeProvider theme={theme}>
       <Container component="main" maxWidth="xs">
         <CssBaseline />
@@ -129,6 +135,8 @@ function LoginPage() {
         </Box>
       </Container>
     </ThemeProvider>
+    </div>
+
   );
 }
 

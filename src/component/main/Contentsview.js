@@ -2,6 +2,7 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import Post from './Post';
+import Post2 from './Post2';
 
 
 
@@ -53,7 +54,7 @@ function Contentsview(props) {
 
     
     axios
-    .post(`http://localhost:9090/mainboard/view/`+mboard_seq)
+    .get(`http://localhost:9090/mainboard/view/`+ mboard_seq)
     .then((res) => {
           console.log(res.data);
           setPost({cotents: res.data.contents,
@@ -86,13 +87,11 @@ function Contentsview(props) {
    
 
     return (
-
-      
-
        <>
         {/* <>{ isLoading === true ? <h3>{post.contents}</h3> : <div></div>}</> */}
         <div style={{padding: "150px 100px 100px 200px"}}>
-        <Post post={post}/>
+        <Post2
+         post={post}/>
         </div>
        </>
     );

@@ -15,7 +15,9 @@ import CompanyProfile from "./component/company/CompanyProfile";
 import CompanyProfileModify from "./component/company/CompanyProfileModify";
 import ApplyList from "./component/company/ApplyList";
 // import "bootstrap/dist/css/bootstrap.min.css";
-
+import FollowingList from "./component/follow/followinglist/FollowingList";
+import FollowerList from "./component/follow/followerlist/FollowerList";
+import SearchList from "./component/follow/searchlist/SearchList";
 function App1() {
   const { user } = useUserState();
 
@@ -26,9 +28,9 @@ function App1() {
   return (
     <>
       <Header />
-      <div className="container">
+      <div>
         <Routes>
-          {!user && (
+          {user && (
             <>
               <Route path="/" element={<MainPage />} />
               <Route path="*" element={<NoMatch />} />
@@ -41,9 +43,9 @@ function App1() {
               <Route path="company/modify" element={<CompanyProfileModify />} />
               <Route path="company/apply" element={<ApplyList />} />
               <Route path="mypage/:user_id" element={<MyPage />} />
-                  <Route path="/followinglist" element={<FollowingList/>}/>
-		        <Route path="/followerlist" element={<FollowerList/>}/>
-		        <Route path="/searchlist/:keyword" element={<SearchList/>}/>
+              <Route path="/followinglist" element={<FollowingList/>}/>
+		          <Route path="/followerlist" element={<FollowerList/>}/>
+		          <Route path="/searchlist/:keyword" element={<SearchList/>}/>
             </>
           )}
           {!user && (

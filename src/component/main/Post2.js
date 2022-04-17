@@ -55,9 +55,9 @@ const initialState = {
 }
 //                 setIsPostChange={setIsPostChange}
 
-function Post({post, setIsPostChange, isPostChange}) {
+function Post2({post, setIsPostChange, isPostChange}) {
   const {mboard_seq, user_image1, contents_url, user_name, timestamp, contents, hashtag, user_seq, posting_type,
-    jobposting_seq, start_date, end_date, company_name, work_area, work_field, work_condition,user_id} = post
+    jobposting_seq, start_date, end_date, company_name, work_area, work_field, work_condition} = post
 
   const jobpost = [start_date, end_date, company_name, work_area, work_field, work_condition];
   const jobpostlist = ["접수시작", "접수마감","회사명","회사위치","모집분야","채용조건"];
@@ -78,7 +78,7 @@ function Post({post, setIsPostChange, isPostChange}) {
   const { user } = useUserState();
 
   React.useEffect(() => {
-    console.log("App----------", user, user_id);
+    console.log("App----------", user);
   }, [user]);
 
 
@@ -106,14 +106,6 @@ function Post({post, setIsPostChange, isPostChange}) {
       console.log(res.data);
       setFBemoji(icons.find("facebook", res.data.emoji));       
      // console.log("replys-----", replys);
-     let tempMent = "";
-     if(res.data.emoji==='like') tempMent='추천~꾹!'
-     if(res.data.emoji==='love') tempMent='좋아요'
-     if(res.data.emoji==='haha') tempMent='하하하'
-     if(res.data.emoji==='wow') tempMent='와~우!'
-     if(res.data.emoji==='sad') tempMent='힝~'
-     if(res.data.emoji==='angry') tempMent='@!#$$@#'
-     setMent(tempMent);
     })
     .catch((e) => {
      // console.log(e);
@@ -175,7 +167,7 @@ function Post({post, setIsPostChange, isPostChange}) {
   const onClickReplyBtn= () => {
     var frmData = new FormData();
     frmData.append("mboard_seq", mboard_seq);
-    frmData.append("user_seq",user.user_seq);
+    frmData.append("user_seq",user_seq);
     frmData.append("reply", reply);
 
     axios 
@@ -317,25 +309,12 @@ function Post({post, setIsPostChange, isPostChange}) {
           {posting_type==="2" && <p>{"광고"}</p>}
         </div>
 
-{
-  user.user_id === user_id ? 
-    <>
-      <div style={{color:"#5a92ff",alignItems: "right", cursor:"pointer", marginLeft:"420px",marginRight:"10px"}}>
-          <RateReviewOutlinedIcon className="button"  onClick={()=>onClickModify(mboard_seq)}  />
-      </div>
-      <div style={{color:"#5a92ff",alignItems: "right", cursor:"pointer",  marginRight:"5px"}}>
-      <DeleteSweepOutlinedIcon className="button" style={{alignItems: "right",color:"#5a92ff"}} onClick={()=>onClickDel(mboard_seq)} />
-    </div>
-    </>
-  :
-  <></>  
-}
     </div>
       
       {contents_url && <div className="post__image" >
         <img src={contents_url} alt="" style={{width:"50%" ,height:"30%", textAlign:"center"}} />
       </div>} 
-    
+      
       <div className="post__bottom"  style={{marginTop:"10px"}}>
         <p style={{textAlign:"center"}}>{contents}</p>
         <div style={{textAlign:"center"}}>
@@ -368,91 +347,7 @@ function Post({post, setIsPostChange, isPostChange}) {
         ))}
       </div>
 
-      {/* <div >
-      <AvatarGroup total={24} >
-        <Avatar alt="Remy Sharp" src={fbemoji} style={{ width: "17px", height: "17px", fontSize: "small"}}/>
-        <Avatar alt="Remy Sharp" src={fbemoji} style={{ width: "17px", height: "17px", fontSize: "small"}}/>
-        <Avatar alt="Remy Sharp" src={fbemoji} style={{ width: "17px", height: "17px", fontSize: "small"}}/>
-      </AvatarGroup>
-      </div> */}
-
-      <div className="post__options">
-        <div className="post__option">
-          <div style={{ position: 'relative' }}>
-
-{/* facebook이모지 부분 */}
-            <div onClick={handleAdd} className="FeedPopupButton__bottom">
-              <div><img src={fbemoji} style={{ width:"25px",height:"25px",color: "#7e7e7e" }} alt="test"/></div>
-              <div>&nbsp;&nbsp;{ment}</div>
-            </div>
-            { state.showSelector ? (
-              <div style={{position: 'absolute', bottom: '100%', left:'-100%', marginBottom: '10px' }}>
-                <FacebookSelector onSelect={handleSelect} />
-              </div>
-            ) : null }
-          </div>        
-        </div>
-          
-        <div className="post__option comment" onClick={onClick}>
-          <div className="FeedPopupButton__bottom">
-            <ChatOutlinedIcon style={{color:"#5a92ff"}} />
-            <div>&nbsp;&nbsp;댓글</div>
-          </div>
-        </div>
-
-        <div className="post__option">
-          <div className="FeedPopupButton__bottom">
-          <FilePresentOutlinedIcon style={{color:"#5a92ff"}} />
-          
-          <CopyToClipboard text={"http://127.0.0.1:3000/contentsview/"+ mboard_seq} onCopy={()=>alert("주소가 복사되었습니다")}>
-             <span>공유</span>
-          </CopyToClipboard>
-          </div>
-        </div>
-
-        {/* <div className="post__option">
-          <AccountCircleIcon />
-          <ExpandMoreOutlined />
-        </div> */}
-      </div>
-
-      <div className="reply">
-        <Box
-          sx={{
-            width: 550,
-            maxWidth: "100%",
-          }}
-        >
-          {isShow && (
-            <>
-              <Box sx={{ height: 100 }}>
-                <div>
-                  <TextField fullWidth id="outlined-basic" variant="outlined" label="의견을 나눠주세요 :)" onChange={onChangeUserMent} value={reply}></TextField>
-                </div>
-
-                <div>
-                  <Button className="button" style={{float: "right", color:"#61b3ff"}} onClick={onClickReplyBtn}>
-                    <WbSunnyOutlinedIcon/>댓글달기</Button>
-                </div>
-              </Box>
-
-              {replys &&
-                replys.map((data)=>
-                <div>
-                <PostReply
-                  getReplys = {getReplys}
-                  reply_seq={data.reply_seq}
-                  profile_url={data.user_image1}
-                  user_name={data.user_name}
-                  rdate={data.rdate}
-                  contents={data.reply}
-                />
-              </div>)
-              }
-            </>
-          )}
-        </Box>
-      </div>
+     
     </div>
     </>
   );
@@ -460,4 +355,4 @@ function Post({post, setIsPostChange, isPostChange}) {
          
 
 //export default React.memo(Post);
-export default Post;
+export default Post2;

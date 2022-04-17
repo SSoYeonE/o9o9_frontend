@@ -18,6 +18,7 @@ import Box from '@mui/material/Box';
 import InputLabel from '@mui/material/InputLabel';
 import FormControl from '@mui/material/FormControl';
 import NativeSelect from '@mui/material/NativeSelect';
+import { useUserState } from "../member/UserContext";
 
 const FeedModalContents = ({props, setSectionHeight}) => {
   const [input, setInput] = useState("");
@@ -38,9 +39,15 @@ const FeedModalContents = ({props, setSectionHeight}) => {
   const [work_condition, setWork_condition] = useState("");
   const [mboard_seq, setMboardSeq] = useState("");
   const [isLoading, setLoading] = useState(true);
-
+  const [user_seq, setUserSeq] = useState("");
 
   let history = useNavigate (); 
+
+  const { user } = useUserState();
+
+  React.useEffect(() => {
+    console.log("App----------", user);
+  }, [user]);
 
   const {post, open, close, header } = props;
 
@@ -61,6 +68,14 @@ const FeedModalContents = ({props, setSectionHeight}) => {
       setContents(post.contents);
       setPosting_type(post.posting_type);
       setMboardSeq(post.mboard_seq);
+      setStart_date(post.start_date);
+      setEnd_date(post.end_date);
+      setCompany_name(post.company_name);
+      setWork_area(post.work_area);
+      setWork_field(post.work_field);
+      setWork_condition(post.work_condition);
+      setMboardSeq(post.mboard_seq);
+      setUserSeq(user.user_seq);
 
       const harr =  post.hashtag.split("#").map((data)=>data.trim());
       setHashArr((hashArr)=>[...hashArr, ...harr]);
@@ -144,7 +159,8 @@ const FeedModalContents = ({props, setSectionHeight}) => {
     frmData.append("file", document.myform.filename.files[0]);
     frmData.append("mboard_seq", mboard_seq)
     frmData.append("hashtag", hashtag);
-    frmData.append("user_seq", 1);
+    frmData.append("user_seq", user.user_seq);
+    console.log('user_seq=-=================-=-=---??',user.user_seq);
     frmData.append("view_yn", 'y');
     frmData.append("del_yn", 'N');
     frmData.append("like_seq", 1);
@@ -158,7 +174,8 @@ const FeedModalContents = ({props, setSectionHeight}) => {
     frmData.append("work_field", work_field);
     frmData.append("work_condition", work_condition);
 
-    if(mboard_seq.length == 0){
+    alert(mboard_seq);
+    if(mboard_seq === ""){
 
       Axios.post('http://localhost:9090/mainboard/insert/', frmData)
       .then(
@@ -304,10 +321,10 @@ const onClickImg = () =>{
           <InputLabel variant="standard" htmlFor="uncontrolled-native">
           글 종류
           </InputLabel>
-          <NativeSelect name="posting_type" onChange={onChangePostingType} defaultValue={0}>
-          <option value={0}>일반글</option>
-          <option value={1}>채용공고</option>
-          <option value={2}>광고</option>
+          <NativeSelect name="posting_type" onChange={onChangePostingType} defaultValue={0} value={posting_type}>
+          <option value={'0'}>일반글</option>
+          <option value={'1'}>채용공고</option>
+          <option value={'2'}>광고</option>
           </NativeSelect>
         </Box>
         
@@ -325,18 +342,29 @@ const onClickImg = () =>{
               }}
             >     
 
+            { post != null ?  <>
+            <TextField fullWidth value={start_date} name="start_date" id="outlined-basic" label="접수시작" variant="outlined" onChange={onChangeStartDate}/>
+            <TextField fullWidth value={end_date}name="end_date" id="outlined-basic" label="접수마감" variant="outlined" onChange={onChangeEndDate}/>
+            <TextField fullWidth value={company_name} name="company_name"  id="outlined-basic" label="회사이름" variant="outlined" onChange={onChangeCompanyName}/>
+            <TextField fullWidth value={work_area} name="work_area"  id="outlined-basic" label="근무지역" variant="outlined" onChange={onChangeWorkArea}/>
+            <TextField fullWidth value={work_field} name="work_field" id="outlined-basic" label="채용분야" variant="outlined" onChange={onChangeWorkField}/>
+            <TextField fullWidth value={work_condition} name="work_condition"  id="outlined-basic" label="자격요건" variant="outlined"onChange={onChangeCondition} />
+            </> 
+            :
+            <>
             <TextField fullWidth name="start_date" id="outlined-basic" label="접수시작" variant="outlined" onChange={onChangeStartDate}/>
             <TextField fullWidth name="end_date" id="outlined-basic" label="접수마감" variant="outlined" onChange={onChangeEndDate}/>
             <TextField fullWidth name="company_name"  id="outlined-basic" label="회사이름" variant="outlined" onChange={onChangeCompanyName}/>
             <TextField fullWidth name="work_area"  id="outlined-basic" label="근무지역" variant="outlined" onChange={onChangeWorkArea}/>
             <TextField fullWidth name="work_field" id="outlined-basic" label="채용분야" variant="outlined" onChange={onChangeWorkField}/>
             <TextField fullWidth name="work_condition"  id="outlined-basic" label="자격요건" variant="outlined"onChange={onChangeCondition} />
+            </>
+            }
             </div>
          
         }
         </>
       }
-
       <div
         style={{
           display: "flex",
@@ -345,7 +373,6 @@ const onClickImg = () =>{
           alignItems: "center",
         }}
       >
-
         {imageSrc && (
           <img
             src={imageSrc}
