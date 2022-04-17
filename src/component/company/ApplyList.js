@@ -4,10 +4,17 @@ import {  Link } from "react-router-dom";
 import Axios from "axios";
 import { useInView } from "react-intersection-observer"
 import "bootstrap/dist/css/bootstrap.min.css";
+import { useUserState } from "../member/UserContext";
 
 function ApplyList(props){
      const [board, setBoard] = useState([])
+     const { user } = useUserState();
 
+     React.useEffect(() => {
+       console.log("App----------", user);
+     }, [user]);
+   
+   
 
          /*
          useEffect( function, deps )
@@ -28,7 +35,8 @@ function ApplyList(props){
         //   ]
         // );
         // seq : 회사정보
-        Axios.get('http://localhost:9090/apply/list?seq=2')
+        //values(#{jobposting_seq}, #{user_seq}, now(), #{com_seq}, #{cand_confirm});
+        Axios.get('http://localhost:9090/apply/list?seq=' + user.user_seq)
         .then(res => {
           console.log(res.data)
           setBoard(...board, res.data.list);
@@ -58,7 +66,7 @@ function ApplyList(props){
                             <td>{i}</td>
                             <td>{object.user_name}</td>
                             <td>{object.user_birth}</td>
-                            <td>{object.date}</td>
+                            <td>{object.cand_date}</td>
                           </tr>   
                         )              
                     })

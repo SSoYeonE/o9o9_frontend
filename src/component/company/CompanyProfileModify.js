@@ -75,11 +75,11 @@ function CompanyProfileModify() {
   return (
     <div className="com_profile">
       <Card sx={{ minWidth: 500, maxHeight: 1000 }}>
-        <CardActionArea>
+      <CardActionArea>
           <CardMedia
             component="img"
             height="200"
-            image="https://raw.githubusercontent.com/emilyoun/Facebook-Clone-with-REACT/main/Screen%20Shot%202021-01-02%20at%206.34.08%20PM.png"
+            image={board.image2}
             alt="green iguana"
           />
 
@@ -92,12 +92,13 @@ function CompanyProfileModify() {
           >
             <Avatar
               alt="Remy Sharp"
-              src="https://raw.githubusercontent.com/emilyoun/Facebook-Clone-with-REACT/main/Screen%20Shot%202021-01-02%20at%206.03.01%20PM.png"
+              src={board.image1}
               sx={{ width: 100, height: 100 }}
-              style={{ top: -50, width: 150, height: 150 }}
+              style={{ top: -50 , width: 150, height: 150}}
             />
           </CardContent>
         </CardActionArea>
+        
       </Card>
 
       <hr style={{ color: "rgba(0,0,0,0.1)" }} />

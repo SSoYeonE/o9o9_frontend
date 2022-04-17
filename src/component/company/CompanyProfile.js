@@ -12,11 +12,26 @@ import Popup from "./Popup.js";
 import BuildOutlinedIcon from '@mui/icons-material/BuildOutlined';
 import {  Link } from "react-router-dom";
 import "./FeedPopupButton.css"
+import EmojiPeopleIcon from '@mui/icons-material/EmojiPeople';
+
+import FavoriteIcon from '@mui/icons-material/Favorite'; //follow 시
+import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder'; //unfollow 시
+import { useUserState } from "../member/UserContext";
+
 
 
 function CompanyProfile() {
   const [board, setBoard] = useState([])
   const navigate = useNavigate();
+
+  const { user } = useUserState();
+
+     React.useEffect(() => {
+       console.log("App----------", user);
+       console.log(user.user_seq, board.user_seq)
+     }, [user]);
+   
+
   useEffect(() => { 
     console.log("데이터 불러오기");
     // setBoard(
@@ -39,17 +54,33 @@ function CompanyProfile() {
     //console.log( heroState.hero );
   }, []);
 
+  useEffect(()=>{
+
+    if(board.length!==0){
+    console.log(typeof user.user_seq , typeof board.user_seq , user.user_seq === board.user_seq );
+  }
+
+  }, [board]);
+
 const onClickModify = () => {
   navigate('/company/modify')
 }
+const onClickCandList = () => {
+  navigate('/company/apply')
+}
+const onClickFollow = () => {
+  navigate('/company/apply')
+  // 원웅님 수정
+}
   return (
     <div className="com_profile">
+      <>
       <Card sx={{ minWidth: 500, maxHeight: 1000 }}>
         <CardActionArea>
           <CardMedia
             component="img"
             height="200"
-            image="https://raw.githubusercontent.com/emilyoun/Facebook-Clone-with-REACT/main/Screen%20Shot%202021-01-02%20at%206.34.08%20PM.png"
+            image={board.image2}
             alt="green iguana"
           />
 
@@ -62,26 +93,47 @@ const onClickModify = () => {
           >
             <Avatar
               alt="Remy Sharp"
-              src="https://raw.githubusercontent.com/emilyoun/Facebook-Clone-with-REACT/main/Screen%20Shot%202021-01-02%20at%206.03.01%20PM.png"
+              src={board.image1}
               sx={{ width: 100, height: 100 }}
               style={{ top: -50 , width: 150, height: 150}}
             />
-
-            
           </CardContent>
-
-         
         </CardActionArea>
         
       </Card>
       <hr style={{ color: "rgba(0,0,0,0.1)" }} />
           {/* <Button variant="contained"onClick={onClickModify}>수정하기</Button> */}
+          
+          <div style={{display:"flex"}}>
+          <div style={{textAlign:"center"}} onClick={onClickCandList}>
+          <EmojiPeopleIcon style={{color:"#4fd3d8", size:"500px"}}/>
+            지원자 목록 보기
+          </div>
+          &nbsp;&nbsp;&nbsp;
+          {Number(user.user_seq) === board.user_seq ? 
           <div style={{textAlign:"center"}} onClick={onClickModify}>
           <BuildOutlinedIcon style={{color:"#4fd3d8"}}/>
             수정하기
           </div>
+          : 
+          <div>
+             {/* FavoriteBorderIcon 팔로우가 아닐시에는 이아이콘 */}
+            <div style={{textAlign:"center"}} onClick={onClickFollow}>
+            <FavoriteIcon style={{color:"#4fd3d8"}}/>
+              팔로우
+            
+          </div>
+            </div>}
+          &nbsp;&nbsp;&nbsp;
+         
+          </div>
+
           <CardContent>
-            <Popup title="회사명" message={board.name}></Popup>
+            
+           
+          </CardContent>
+
+          <Popup title="회사명" message={board.name}></Popup>
             <Popup title="한줄프로필" message={board.srt}></Popup>
             <Popup title="창립일" message={board.day}></Popup>
             <Popup title="규모" message={board.size}></Popup>
@@ -90,11 +142,8 @@ const onClickModify = () => {
             <Popup title="연락처" message={board.phone}></Popup>
             <Popup title="이메일" message={board.mail}></Popup>
             <Popup title="설명프로필" message={board.intro}></Popup>
-           
-          </CardContent>
-          
-         
 
+          </>
     </div>
   );
 }

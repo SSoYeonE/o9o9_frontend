@@ -7,7 +7,7 @@ import WbSunnyOutlinedIcon from '@mui/icons-material/WbSunnyOutlined';
 import { AvatarGroup, Button, TextField } from "@mui/material";
 import "./Feed.css";
 import PostReply from "./PostReply";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import {  SlackSelector,
           FacebookSelector,
           FacebookCounter } from 'react-reactions';
@@ -56,6 +56,7 @@ const initialState = {
 //                 setIsPostChange={setIsPostChange}
 
 function Post({post, setIsPostChange, isPostChange}) {
+  const history = useNavigate();
   const {mboard_seq, user_image1, contents_url, user_name, timestamp, contents, hashtag, user_seq, posting_type,
     jobposting_seq, start_date, end_date, company_name, work_area, work_field, work_condition,user_id} = post
 
@@ -85,9 +86,28 @@ function Post({post, setIsPostChange, isPostChange}) {
   const onChangeUserMent = (e) => {
     setReply(e.target.value);
   }
-  const onclickApply = (() =>{
-    alert("지원되셨습니다. 잘되실거에요:)");
-  });
+  const onclickApply = () =>{
+            //values(#{jobposting_seq}, #{user_seq}, now(), #{com_seq}, #{cand_confirm});
+    var frmData = new FormData();
+    frmData.append("jobposting_seq",jobposting_seq);
+    frmData.append("user_seq",user.user_seq); // 지원하는 사람(로그인한 사람)
+    frmData.append("com_seq",user_seq); // 게시글 쓴사람(공고쓴 사람, 기업)
+    frmData.append("cand_confirm","0");
+
+    axios.post('http://localhost:9090/apply/insert/', frmData)
+    .then(
+        res =>{
+          if(res.data.result === "success") {
+            console.log(res.data);
+            alert("지원되셨습니다. 잘되실거에요:)");
+            // window.location.reload();
+          } else {
+            alert("지원할수없습니다.")
+          }
+        } 
+    );
+
+  };
 
 
 
@@ -349,9 +369,9 @@ function Post({post, setIsPostChange, isPostChange}) {
           <p>{jobpostlist[4]} : {jobpost[4]}</p>
           <p>{jobpostlist[5]} : {jobpost[5]}</p>
           
-          <div>
-            <Button>
-              <IosShareOutlinedIcon className="button" onClick={onclickApply} style={{float: "right", color:"#4fd3d8"}}/>
+          <div style={{zIndex:"10000"}}>
+            <Button onClick={onclickApply}>
+              <IosShareOutlinedIcon className="button" style={{float: "right", color:"#4fd3d8"}}/>
                 지원하기
               </Button>
           </div>

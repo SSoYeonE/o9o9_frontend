@@ -58,7 +58,7 @@ export default function Profile() {
 
   return (
     <div className="profile">
-      <Card sx={{ minWidth: 220, maxHeight: 500 }} onClick={profileDetail}>
+      { profile &&   <Card sx={{ minWidth: 220, maxHeight: 500 }} onClick={profileDetail}>
         <CardActionArea>
           <CardMedia
             component="img"
@@ -92,6 +92,8 @@ export default function Profile() {
           </CardContent>
         </CardActionArea>
       </Card>
+       }
     </div>
+   
   );
 }
