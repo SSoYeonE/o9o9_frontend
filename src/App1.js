@@ -21,6 +21,8 @@ import SearchList from "./component/follow/searchlist/SearchList";
 
 import FindId from "./component/member/FindId";
 import FindPwd from "./component/member/FindPwd";
+import User from "./component/people/UserProfile";
+import UserUpdate from "./component/people/UserUpdate";
 
 function App1() {
   const { user } = useUserState();
@@ -49,6 +51,8 @@ function App1() {
               <Route path="/followinglist" element={<FollowingList/>}/>
 		          <Route path="/followerlist" element={<FollowerList/>}/>
 		          <Route path="/searchlist/:keyword" element={<SearchList/>}/>
+              <Route path="user" element={<User/>}/>
+              <Route path="user/update" element={<UserUpdate/>}/> 
             </>
           )}
           {!user && (
