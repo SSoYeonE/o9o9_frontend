@@ -53,7 +53,15 @@ export default function Profile() {
   }, [profile])
 
   const profileDetail = ()=>{
-    history("/company/"+user.user_seq);
+  
+    if(user.user_level === '1'){
+      history("/company/"+user.user_seq)
+    }
+    else {
+      // 우영님꺼로 변경
+      alert("일반프로필입니다요")
+      // history("/company/"+user.user_seq)
+    }
   }
 
 
