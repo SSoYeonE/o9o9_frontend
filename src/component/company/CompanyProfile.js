@@ -30,7 +30,7 @@ function CompanyProfile() {
 
      React.useEffect(() => {
        console.log("App----------", user);
-       console.log(user.user_seq, board.user_seq)
+       console.log(typeof user.user_seq, typeof user_seq)
      }, [user]);
    
 
@@ -55,28 +55,30 @@ function CompanyProfile() {
     
     });
   
-    const frmData = new FormData();
-    frmData.append("follower_seq", user.user_seq);
-    frmData.append("followee_seq", user_seq);
+  
+    if(user.user_seq !== user_seq){
+      const frmData = new FormData();
+      frmData.append("follower_seq", user.user_seq);
+      frmData.append("followee_seq", user_seq);
 
-    console.log( 'isfollowing -> ', user.user_seq,  user_seq)
+      console.log( 'isfollowing -> ', user.user_seq,  user_seq)
 
 
-    axios.post('http://localhost:9090/follow/isfollow', frmData)
-    .then(res => {
-      console.log(res.data.result);
-      if (res.data.result === true) {
-        setIsFollow(true);
-      }
-    });
-
+      axios.post('http://localhost:9090/follow/isfollow', frmData)
+      .then(res => {
+        console.log(res.data.result);
+        if (res.data.result === true) {
+          setIsFollow(true);
+        }
+      });
+  }
 
   }, []);
 
   useEffect(()=>{
 
     if(board.length!==0){
-    console.log(typeof user.user_seq , typeof board.user_seq , user.user_seq === board.user_seq );
+    console.log(user.user_seq, board.user_seq, typeof user.user_seq , typeof board.user_seq , board.user_seq === user.user_seq );
   }
 
   }, [board]);
