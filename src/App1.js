@@ -18,6 +18,10 @@ import ApplyList from "./component/company/ApplyList";
 import FollowingList from "./component/follow/followinglist/FollowingList";
 import FollowerList from "./component/follow/followerlist/FollowerList";
 import SearchList from "./component/follow/searchlist/SearchList";
+
+import FindId from "./component/member/FindId";
+import FindPwd from "./component/member/FindPwd";
+
 function App1() {
   const { user } = useUserState();
 
@@ -53,6 +57,8 @@ function App1() {
               <Route path="/" element={<LoginPage />} />
               <Route path="signup" element={<SignUpPage />} />
               <Route path="login" element={<LoginPage />} />
+              <Route path="findid" element={<FindId />} />
+              <Route path="findpwd" element={<FindPwd />} />
             </>
           )}
         </Routes>

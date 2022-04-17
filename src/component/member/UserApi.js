@@ -35,7 +35,19 @@ export const sendInsertReq = async (dto) => {
 
 export const sendFindIdReq = async (dto) => {
   console.log("[UserApi-sendFindIdReq]", dto);
-  const { data } = await axios.post("http://127.0.0.1:9090/member/findid_proc", dto);
+  const { data } = await axios.post(
+    "http://127.0.0.1:9090/member/findid_proc",
+    dto
+  );
   console.log("[UserApi-sendFindIdReq] 응답 데이터", data);
+  return data;
+};
+export const sendFindPwdReq = async (dto) => {
+  console.log("[UserApi-sendFindPwdReq]", dto);
+  const { data } = await axios.post(
+    "http://127.0.0.1:9090/member/findpass_proc",
+    dto
+  );
+  console.log("[UserApi-sendFindPwdReq] 응답 데이터", data);
   return data;
 };

@@ -20,19 +20,25 @@ import { Link } from 'react-router-dom'
 import AccountCircleRoundedIcon from '@mui/icons-material/AccountCircleRounded';
 import { ConstructionOutlined } from "@mui/icons-material";
 import SocialDistanceOutlinedIcon from '@mui/icons-material/SocialDistanceOutlined';
+import { useUserState } from "../member/UserContext";
+
 
 function Header() {
+  const { user } = useUserState();
   // const [{ user }, dispatch] = useStateValue();
   const navigate = useNavigate();
-  const user = {
-    profilePic:
-      "https://raw.githubusercontent.com/emilyoun/Facebook-Clone-with-REACT/main/Screen%20Shot%202021-01-02%20at%206.03.01%20PM.png",
-    message: "WOW this works! ",
-    timestamp: "This is a timestamp",
-    username: "emilyoun",
-    image:
-      "https://img.webmd.com/dtmcms/live/webmd/consumer_assets/site_images/article_thumbnails/other/cat_relaxing_on_patio_other/1800x1200_cat_relaxing_on_patio_other.jpg",
-  };
+  React.useEffect(() => {
+    console.log("App----------", user);
+  }, [user]);
+  // const user = {
+  //   profilePic:
+  //     "https://raw.githubusercontent.com/emilyoun/Facebook-Clone-with-REACT/main/Screen%20Shot%202021-01-02%20at%206.03.01%20PM.png",
+  //   message: "WOW this works! ",
+  //   timestamp: "This is a timestamp",
+  //   username: "emilyoun",
+  //   image:
+  //     "https://img.webmd.com/dtmcms/live/webmd/consumer_assets/site_images/article_thumbnails/other/cat_relaxing_on_patio_other/1800x1200_cat_relaxing_on_patio_other.jpg",
+  // };
 
  const [keyword, setKeyword] = useState("");
 
@@ -85,14 +91,14 @@ function Header() {
           <SupervisedUserCircleIcon fontSize="large" />
         </div> */}
      
-       
+       {user &&
      <div className="header__right" >
         <IconButton>
         <Link to="/"> <HomeRoundedIcon style={{color:"#25d8de"}} fontSize="large"/></Link>
         </IconButton>
 
         <IconButton>
-        <Link to="/profile"><AccountCircleRoundedIcon style={{color:"#25d8de"}} fontSize="large"/></Link>
+        <Link to={`/mypage/${user.user_id}`}><AccountCircleRoundedIcon style={{color:"#25d8de"}} fontSize="large"/></Link>
         </IconButton>
 
         <IconButton>
@@ -109,6 +115,7 @@ function Header() {
 
 
         </div>
+        }
         {/*}<div className="header__info">
           <Avatar src={user.photoURL} />
           <h4>{user.displayName}</h4>
