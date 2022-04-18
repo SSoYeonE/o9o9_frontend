@@ -60,7 +60,6 @@ function MyPage() {
         setImage2(info.user_image2);
         setBrith(info.user_birth);
         setBusiness(info.user_business);
-        setChecked(info.user_level);
       } else {
         alert("서버 응답 에러");
       }
@@ -91,6 +90,7 @@ function MyPage() {
       });
 
       navigate(`/`);
+      window.location.reload(true);
     } else {
       alert("회원정보 업데이트 에러");
     }
@@ -204,6 +204,7 @@ function MyPage() {
                 justifyContent: "center",
                 flexDirection: "column",
                 marginBottom: "20px",
+                fontFamily:'Poor Story'
               }}
             >
               <div
@@ -367,6 +368,7 @@ function MyPage() {
                   onChange={onChangeAddr2}
                 />
               </Grid>
+              
               <Grid item xs={12}>
               <FormControlLabel control={
               <Checkbox

@@ -44,12 +44,12 @@ function App1() {
               <Route path="/emoji" element={<Emoji />} />
               <Route path="/likefolder" element={<LikeFolder />} />
               <Route path="/onetofifty" element={<OneToFifty />} />
-              <Route path="company" element={<CompanyProfile />} />
+              <Route path="company/:user_seq" element={<CompanyProfile />} />
               <Route path="company/modify" element={<CompanyProfileModify />} />
               <Route path="company/apply" element={<ApplyList />} />
               <Route path="mypage/:user_id" element={<MyPage />} />
-              <Route path="/followinglist" element={<FollowingList/>}/>
-		          <Route path="/followerlist" element={<FollowerList/>}/>
+              <Route path="/followinglist/:followee" element={<FollowingList/>}/>
+		          <Route path="/followerlist/:follower" element={<FollowerList/>}/>
 		          <Route path="/searchlist/:keyword" element={<SearchList/>}/>
               <Route path="user" element={<User/>}/>
               <Route path="user/update" element={<UserUpdate/>}/> 

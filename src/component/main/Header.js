@@ -113,7 +113,7 @@ function Header() {
         </IconButton>
 
         <IconButton>
-        <Link to=""><SocialDistanceOutlinedIcon style={{color:"#25d8de"}} fontSize="large"/></Link>
+        <Link to={`/followinglist/${user.user_id}`}><SocialDistanceOutlinedIcon style={{color:"#25d8de"}} fontSize="large"/></Link>
         </IconButton>
 
         {/* <IconButton>

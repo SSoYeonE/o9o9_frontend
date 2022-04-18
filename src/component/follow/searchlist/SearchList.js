@@ -2,8 +2,8 @@ import React, { useEffect, useState } from "react";
 import "./MainPage.css";
 import { useParams } from "react-router-dom";
 import Profile from "./Profile";
-import List from"./List";
 import axios from "axios";
+import SearchProfile from "./SearchProfile";
 
 
 // {/* lowcase a to place h1 in centre, Capital A to align left */}
@@ -14,32 +14,32 @@ function SearchList() {
  
   }, [keyword]);
 
+  const [List, setList]=useState([]);
 
-  // const [{ user }, dispatch] = useStateValue();
-  // const user = null; // null to login page, string to show fb
+ 
 
   useEffect(()=>{
-    // axio,, search controller
-    // /member/search/
-    axios.get(`http://localhost:9090/member/search/1?keyword=${keyword}`)
-    .then( (res)=>{
-        console.log(res.data);
-        
-    });
-  }, [])
+
+    axios.get(`http://localhost:9090/member/search?keyword=${keyword}`)
+      .then( (res)=>{
+          console.log(res.data);
+          setList(res.data.list)
+      });
+      
+
+  }, []);
+  // list
   return (
     // ? BEM naming convention
     <div className="app">
       <>
           <div className="app__body">
           <Profile />
-          <List keyword={""} />
-         {/* {params.keyword === undefined ? (
-            <List keyword={""} />
-          ) : (
-            <List keyword={params.keyword} />
-          )}
-          */}
+          <div style={{display:"flex",   flexDirection: "column",   justifyContent: "center"}}>
+          {
+            List.map((profile)=> <SearchProfile profile={profile}/>)
+          }
+          </div>
         </div>
       </>
     </div>

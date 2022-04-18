@@ -13,10 +13,13 @@ import Popup from "./Popup";
 import BuildOutlinedIcon from "@mui/icons-material/BuildOutlined";
 
 import "./FeedPopupButton.css";
+import { useUserState } from "../member/UserContext";
 
 function CompanyProfileModify() {
   const [board, setBoard] = useState([]);
   const navigate = useNavigate();
+  const { user } = useUserState();
+
   useEffect(() => {
     console.log("데이터 불러오기");
     // setBoard(
@@ -30,7 +33,7 @@ function CompanyProfileModify() {
     //   ]
     // );
 
-    axios.post("http://localhost:9090/company/view/1").then((res) => {
+    axios.post("http://localhost:9090/company/view/"+user.user_seq).then((res) => {
       console.log(res.data);
       setBoard(res.data);
     });
@@ -55,7 +58,7 @@ function CompanyProfileModify() {
     axios.post("http://localhost:9090/company/update/", frmData).then((res) => {
       console.log(res.data);
       setBoard(res.data);
-      navigate("/company");
+      navigate("/company/"+user.user_seq);
       window.location.reload(true);
     });
 
@@ -107,7 +110,7 @@ function CompanyProfileModify() {
         <BuildOutlinedIcon style={{ color: "#4fd3d8" }} />
         수정완료
       </div>
-      <Popup title="회사명" message={board.name} onChange={onChange}></Popup>
+      <Popup2 title="회사명" message={board.name} name={"name"} onChange={onChange}></Popup2>
       <Popup2
         title="한줄프로필"
         message={board.srt}

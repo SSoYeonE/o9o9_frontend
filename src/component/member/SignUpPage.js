@@ -28,7 +28,7 @@ function SignUpPage() {
   const [user_phone, onChangePhone, setPhone] = useInput("");
   const [user_address1, onChangeAddr1, setAddr1] = useInput("");
   const [user_address2, onChangeAddr2, setAddr2] = useInput("");
-  const [user_birth, onChangeBirth, setBrith] = useInput("");
+  const [user_birth, onChangeBirth, setBirth] = useInput("");
   const [user_business, onChangeBusiness, setBusiness] = useInput("");
   const [checked, setChecked] = React.useState(false);
 
@@ -39,6 +39,8 @@ function SignUpPage() {
   const onSignUp = async (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
+    data.append("user_level", checked ? "1":"0");
+
     const info = await sendInsertReq(data);
     console.log("[SignUpPage-onSignUp]", info);
     if (info.result === "success") {

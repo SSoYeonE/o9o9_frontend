@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Poor+Story&display=swap');
+
 .modal {
   display: none;
   position: fixed;
@@ -7,6 +9,9 @@
   left: 0;
   z-index: 999;
   background-color: rgba(0, 0, 0, 0.5);
+  
+  font-family:'Poor Story'
+
 }
 .modal button {
   outline: none;

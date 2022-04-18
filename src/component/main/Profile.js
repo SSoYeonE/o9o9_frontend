@@ -25,7 +25,8 @@ export default function Profile() {
     "user_image1": "",
     "user_image2": "",
     "profile_short": "",
-    "user_name": ""
+    "user_name": "",
+    "user_level":""
 };
 
   const [profile, setProfile] = useState(demoProfile);
@@ -52,7 +53,15 @@ export default function Profile() {
   }, [profile])
 
   const profileDetail = ()=>{
-    history("/company");
+  
+    if(user.user_level === '1'){
+      history("/company/"+user.user_seq)
+    }
+    else {
+      // 우영님꺼로 변경
+      alert("일반프로필입니다요")
+      // history("/company/"+user.user_seq)
+    }
   }
 
 
@@ -64,7 +73,7 @@ export default function Profile() {
             component="img"
             height="200"
             image={profile.user_image2}
-            alt="green iguana"
+            alt="user_image"
           />
 
           <CardContent

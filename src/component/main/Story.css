@@ -1,3 +1,6 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Poor+Story&display=swap');
+
 .story{
     position: relative;
     background-position: center center;
@@ -10,6 +13,7 @@
     margin-right: 10px;
     transition: transform 100ms ease-in;
     cursor: pointer;
+    font-family:'Poor Story';
 }
 
 .story:hover {

@@ -63,7 +63,7 @@ function ApplyList(props){
                     board.map(function(object, i){
                         return(
                           <tr key={i}>
-                            <td>{i}</td>
+                            <td>{i+1}</td>
                             <td>{object.user_name}</td>
                             <td>{object.user_birth}</td>
                             <td>{object.cand_date}</td>

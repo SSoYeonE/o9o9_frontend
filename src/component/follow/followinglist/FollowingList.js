@@ -8,10 +8,7 @@ import List from"./List";
 // {/* lowcase a to place h1 in centre, Capital A to align left */}
 
 function FollowingList() {
-  const params = useParams();
-  useEffect(() => {
- 
-  }, [params.keyword]);
+  const {followee} = useParams();
 
 
   // const [{ user }, dispatch] = useStateValue();
@@ -20,15 +17,21 @@ function FollowingList() {
     // ? BEM naming convention
     <div className="app">
       <>
+          
           <div className="app__body">
+          
           <Profile />
-          <List keyword={""} />
+          <div style={{textAlign:"center" , marginTop:"50px", marginBottom:"10px"}}><h3>FollowingList</h3>
+          <br/>
+          
+          <List keyword={""} user={followee}/>
          {/* {params.keyword === undefined ? (
             <List keyword={""} />
           ) : (
             <List keyword={params.keyword} />
           )}
           */}
+          </div>
         </div>
       </>
     </div>
