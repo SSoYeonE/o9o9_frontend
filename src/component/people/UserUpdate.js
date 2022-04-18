@@ -75,7 +75,7 @@ function UserUpdate() {
         res =>{
           console.log(res.data);
           alert("수정되었습니다.");
-          history('/user');
+          history('/user/'+user.user_seq);
         } 
     );
   }
