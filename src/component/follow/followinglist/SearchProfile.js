@@ -19,9 +19,7 @@ function SearchProfile({profile}) {
   const onClick = ()=>{
     //alert(profile.user_level, profile.followee_seq);
     if(profile.user_level==="0"){
-      // 일반 사용자 프로필
-      // 우영님꺼
-      history('/');
+      history('/user/'+profile.followee_seq);
     } else {
       history('/company/'+profile.followee_seq);
     }

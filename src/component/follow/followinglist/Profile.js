@@ -58,9 +58,8 @@ export default function Profile() {
       history("/company/"+user.user_seq)
     }
     else {
-      // 우영님꺼로 변경
-      alert("일반프로필입니다요")
-      // history("/company/"+user.user_seq)
+ 
+      history("/user/"+user.user_seq)
     }
   }
 

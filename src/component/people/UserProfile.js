@@ -19,7 +19,7 @@ import { useUserState } from "../member/UserContext";
 
 function User() {
   const { user } = useUserState();
-
+  const {user_seq} = useParams();
   let history = useNavigate ();
 
   const [inputs, setInputs] = useState({
@@ -59,11 +59,9 @@ function User() {
 
 
   useEffect(()=>{
-    const user_seq = user.user_seq;
     axios.get(`http://localhost:9090/profile/view/${user_seq}`)
     .then(
         res =>{
-          console.log(res.data);
           if(res.data.profile_filename1!="")
             res.data.link1 ="http://localhost:9090/profile/download/image?file="+res.data.profile_filename1;
           if(res.data.profile_filename2!="")
@@ -119,10 +117,10 @@ function User() {
   }
 
   return (
-    <>
-      <Container fluid>
-        <Row>
-          <Col md="8">
+    <div style={{paddingTop:"120px"}}>
+      <Container>
+        {/* <Row> */}
+          {/* <Col md="8"> */}
             <Card>
               <Card.Header>
                 <Card.Title as="h4">프로필</Card.Title>
@@ -140,7 +138,7 @@ function User() {
                       <Row>
                         <Col className="px-1">
                           <Form.Group>
-                            <label>이름!!!!!!!!!</label>
+                            <label>이름</label>
                             <Form.Control
                               type="text" 
                               className="form-control" 
@@ -358,23 +356,27 @@ function User() {
                       </Form.Group>
                     </Col>
                   </Row>
-                  <Button
-                    className="btn-fill pull-right"
-                    type="button"
-                    variant="info"
-                    onClick={updateProfileBtn}
-                  >
-                    Update Profile
-                  </Button>
+
+
+                  { user.user_seq === user_seq ? 
+                    <Button
+                      className="btn-fill pull-right"
+                      type="button"
+                      variant="info"
+                      onClick={updateProfileBtn}
+                    >
+                      Update Profile
+                    </Button> : <div></div>
+                  }
                   <div className="clearfix"></div>
                 </Form>
               </Card.Body>
             </Card>
-          </Col>
+          {/* </Col> */}
        
-        </Row>
+        {/* </Row> */}
       </Container>
-    </>
+    </div>
   );
 }
 

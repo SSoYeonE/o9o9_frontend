@@ -51,7 +51,7 @@ function App1() {
               <Route path="/followinglist/:followee" element={<FollowingList/>}/>
 		          <Route path="/followerlist/:follower" element={<FollowerList/>}/>
 		          <Route path="/searchlist/:keyword" element={<SearchList/>}/>
-              <Route path="user" element={<User/>}/>
+              <Route path="user/:user_seq" element={<User/>}/>
               <Route path="user/update" element={<UserUpdate/>}/> 
             </>
           )}
